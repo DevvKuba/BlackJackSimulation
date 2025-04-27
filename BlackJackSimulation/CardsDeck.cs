@@ -7,7 +7,7 @@
         {
             // initiliase the actual gameDeck to play
             GameDeck = new List<Dictionary<string, string>>();
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 52; i++)
             {
 
                 GameDeck.Add(new Card().CardDict);

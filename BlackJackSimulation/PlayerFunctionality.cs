@@ -3,6 +3,11 @@
     public interface PlayerFunctionality
     {
 
-        void DrawCard(CardsDeck deck);
+        bool DrawCard(CardsDeck deck);
+
+        int DetermineCardPower(string cardPower);
+
+        bool DetermineBust();
+
     }
 }
