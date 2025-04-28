@@ -16,7 +16,8 @@
 
         public bool takeTurn(CardsDeck gameDeck)
         {
-            Console.WriteLine($"{Name} for Draw another card press '1', to hold press '2'");
+            Console.WriteLine($"{Name}'s current total:{PowerTotal}");
+            Console.WriteLine($"{Name} to Draw another card press '1', to hold press '2'");
             int userInput = int.Parse(Console.ReadLine());
             if (userInput == 1)
             {
@@ -43,9 +44,9 @@
             deck.GameDeck.Remove(card);
             var cardPowerString = card.Values.ToList()[0];
             var cardPowerKey = card.Keys.ToList()[0];
-
             Console.WriteLine($"{Name} draws a card..\n it's a {cardPowerString} of {cardPowerKey}");
             PowerTotal += DetermineCardPower(cardPowerString);
+            Console.WriteLine($"{Name}'s new total:{PowerTotal}\n");
 
             if (DetermineBust())
             {
@@ -109,7 +110,6 @@
                     return false;
                 }
             }
-            Console.WriteLine($"Total within range, currently {PowerTotal}");
             return true;
         }
 

@@ -18,6 +18,9 @@
 
         public void startRound()
         {
+            // make sure players totals and hand are reset
+            GetReadyForRound();
+
             while (true)
             {
                 if (P1.IsHolding && P2.IsHolding)
@@ -61,7 +64,29 @@
 
             }
 
+            // another round logic
+            ContinuePlaying();
 
+
+        }
+
+        public void ContinuePlaying()
+        {
+            Console.WriteLine($"{P1.Name}, would you like to play another round? '1' for yes '2' for no");
+            int p1Input = int.Parse(Console.ReadLine());
+            Console.WriteLine($"{P2.Name}, would you like to play another round? '1' for yes '2' for no");
+            int p2Input = int.Parse(Console.ReadLine());
+            if(p1Input == 1 && p2Input == 1) {
+                startRound();
+            }
+        }
+
+        public void GetReadyForRound()
+        {
+            P1.PowerTotal = 0;
+            P2.PowerTotal = 0;
+            P1.PlayerHand.Clear();
+            P2.PlayerHand.Clear();
         }
 
 
