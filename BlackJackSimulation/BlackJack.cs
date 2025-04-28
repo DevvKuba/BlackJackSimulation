@@ -22,6 +22,7 @@
             {
                 if (P1.IsHolding && P2.IsHolding)
                 {
+                    Console.WriteLine("Comparing player hands..");
                     if (P1.PowerTotal > P2.PowerTotal)
                     {
                         Console.WriteLine($"{P1.Name} wins! with a {P1.PowerTotal}\n {P2.Name} had a total of {P2.PowerTotal}");
@@ -43,16 +44,17 @@
                     if (!cardRange)
                     {
                         // P1 busted break out of loop
+                        Console.WriteLine($"{P2.Name} wins! with a total of {P2.PowerTotal}");
                         break;
                     }
 
                 }
-
                 if (!P2.IsHolding)
                 {
                     bool cardRange = P2.takeTurn(Deck);
                     if (!cardRange)
                     {
+                        Console.WriteLine($"{P1.Name} wins! with a total of {P1.PowerTotal}");
                         break;
                     }
                 }
