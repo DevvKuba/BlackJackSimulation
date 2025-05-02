@@ -8,10 +8,12 @@
             Player player1 = new Player("Joffrey");
             Player player2 = new Player("Goomba");
 
+            Gambler gambler1 = new Gambler("Casio");
+            Gambler gambler2 = new Gambler("Robi");
+
             BlackJack blackJackTable = new BlackJack(player1, player2, blackJackDeck);
             blackJackTable.startRound();
 
-            // when a bust happens display the other player as the winner
 
 
 

@@ -43,7 +43,7 @@
 
                 if (!P1.IsHolding)
                 {
-                    bool cardRange = P1.takeTurn(Deck);
+                    bool cardRange = P1.TakeTurn(Deck);
                     if (!cardRange)
                     {
                         // P1 busted break out of loop
@@ -54,7 +54,7 @@
                 }
                 if (!P2.IsHolding)
                 {
-                    bool cardRange = P2.takeTurn(Deck);
+                    bool cardRange = P2.TakeTurn(Deck);
                     if (!cardRange)
                     {
                         Console.WriteLine($"{P1.Name} wins! with a total of {P1.PowerTotal}");

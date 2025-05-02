@@ -1,7 +1,7 @@
 ﻿namespace BlackJackSimulation
 {
 
-    public class Player : PlayerFunctionality
+    public class Player
     {
         public string Name { get; set; }
         public int PowerTotal { get; set; } = 0;
@@ -14,7 +14,7 @@
             PlayerHand = new List<Dictionary<string, string>>();
         }
 
-        public bool takeTurn(CardsDeck gameDeck)
+        public virtual bool TakeTurn(CardsDeck gameDeck)
         {
             Console.WriteLine($"{Name}'s current total:{PowerTotal}");
             Console.WriteLine($"{Name} to Draw another card press '1', to hold press '2'");
@@ -36,7 +36,7 @@
         }
 
 
-        public bool DrawCard(CardsDeck deck)
+        public virtual bool DrawCard(CardsDeck deck)
         {
             var card = deck.GameDeck[0];
             // need to remove card drawn from deck
@@ -59,7 +59,7 @@
         }
 
 
-        public int DetermineCardPower(string cardPower)
+        public virtual int DetermineCardPower(string cardPower)
         {
             try
             {
@@ -89,7 +89,7 @@
             return -1;
         }
 
-        public bool DetermineBust()
+        public virtual bool DetermineBust()
         {
             if (PowerTotal > 21)
             {

@@ -1,9 +1,11 @@
 ﻿namespace BlackJackSimulation
 {
-    public interface PlayerFunctionality
+    public interface IPlayer
     {
 
         bool DrawCard(CardsDeck deck);
+
+        bool TakeTurn(CardsDeck deck);
 
         int DetermineCardPower(string cardPower);
 
