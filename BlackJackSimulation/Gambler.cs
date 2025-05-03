@@ -1,51 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlackJackSimulation
+﻿namespace BlackJackSimulation
 {
     public class Gambler : Player, IGambler
     {
         public int Balance { get; set; }
-        public Gambler(string name) : base(name)
+        public int BetAmount { get; set; }
+        public Gambler(string name, int balance) : base(name)
         {
+            Balance = balance;
             base.Name = name;
             base.PlayerHand = new List<Dictionary<string, string>>();
         }
 
-        public int PlaceBet()
+        public bool PlaceBet()
         {
             int betAmount;
-            Console.WriteLine("How much are you willing to bet, only accepting whole ammounts:");
+            Console.WriteLine($"How much are you willing to bet {Name} current balance: {Balance}, only accepting whole ammounts:");
             string userInput = Console.ReadLine();
 
-            if(int.TryParse(userInput, out betAmount))
+            if (int.TryParse(userInput, out betAmount))
             {
                 Balance -= betAmount;
-                CheckBalance();
+                bool ifCheckSuccessful = CheckBalance();
+                if (!ifCheckSuccessful)
+                {
+                    return false;
+                }
+                BetAmount = betAmount;
+                Console.WriteLine($"{Name} placed a bet of {BetAmount}");
+                return true;
             }
             else
             {
-                Console.WriteLine("Invalid input");
+                Console.WriteLine($"{Name} entered an invalid input");
             }
+            return false;
 
-
-        // are forced to place a bet when taking a turn only then can draw a card
-        // check balance is done prior to ensure they can still play, if balance is ever
-        // becomes negative they get kicked out of the casino
-        // possibly itilise inheritance to call base methods for gambler
-        }
-        public int CheckBalance()
-        {
-            throw new NotImplementedException();
         }
 
-        public bool TakeTurn(CardsDeck deck)
+        // update earnings function instead maybe
+        public void GatherEarningsFrom(Gambler otherPlayer)
         {
-            int bet = PlaceBet();
-            
+            int earnings = BetAmount + otherPlayer.BetAmount;
+            Balance += earnings;
+            BetAmount = 0;
+        }
+        public bool CheckBalance()
+        {
+            if (Balance < 0)
+            {
+                Console.WriteLine($"You took the casions money! Current balance: {Balance} *gets kicked out*");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public override bool DetermineBust()
@@ -67,25 +76,26 @@ namespace BlackJackSimulation
                 else
                 {
                     Console.WriteLine("You exceeded the value of 21! with your total of: " + PowerTotal);
-                    //money goes to other play
+                    //money goes to other player
                     return false;
                 }
             }
             return true;
         }
 
+
         // these methods stay the same no need to override can just call them
         //public int DetermineCardPower(string cardPower)
         //{
-            
+
         //}
 
         //public bool DrawCard(CardsDeck deck)
         //{
-            
+
         //}
 
     }
 
-    
+
 }

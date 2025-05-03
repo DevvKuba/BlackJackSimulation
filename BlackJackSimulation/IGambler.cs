@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlackJackSimulation
+﻿namespace BlackJackSimulation
 {
     public interface IGambler
     {
-        int PlaceBet(int amount);
+        bool PlaceBet();
 
-        int CheckBalance();
+        bool CheckBalance();
+
+        void GatherEarningsFrom(Gambler otherPlayer);
+
+
 
 
     }
